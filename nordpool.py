@@ -1,62 +1,21 @@
-########### Python 2.7 #############
-import httplib, urllib, base64
+# Load selenium components
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait, Select
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 
-headers = {
-    # Request headers
-    'Accept-Encoding': '',
-    'Authorization': '{access token}',
-}
+# Load pandas for parsing the data
+import pandas as pd
 
-params = urllib.urlencode({
-    # Request parameters
-    'deliveryarea': '{string}',
-    'blockname': '{string}',
-    'status': '{string}',
-    'currency': '{string}',
-    'startTime': '{string}',
-    'endTime': '{string}',
-})
+# Establish chrome driver and go to report site URL
+url = "https://www.nordpoolgroup.com/en/Market-data1/Dayahead/Area-Prices/NO/Hourly/?view=table"
+driver = webdriver.Chrome()
+driver.get(url)
 
-try:
-    conn = httplib.HTTPSConnection('marketdata-api.nordpoolgroup.com')
-    conn.request("GET", "/prices/dayahead/prices/areaBlock?%s" % params, "{body}", headers)
-    response = conn.getresponse()
-    data = response.read()
-    print(data)
-    conn.close()
-except Exception as e:
-    print("[Errno {0}] {1}".format(e.errno, e.strerror))
+# Find the javascript table in the page
+test = driver.find_element(by = By.CLASS_NAME, value = 'table-wrapper')
+print(test)
 
-####################################
-
-########### Python 3.2 #############
-import http.client, urllib.request, urllib.parse, urllib.error, base64
-
-headers = {
-    # Request headers
-    'Accept-Encoding': '',
-    'Authorization': '{access token}',
-}
-
-params = urllib.parse.urlencode({
-    # Request parameters
-    'deliveryarea': '{string}',
-    'blockname': '{string}',
-    'status': '{string}',
-    'currency': '{string}',
-    'startTime': '{string}',
-    'endTime': '{string}',
-})
-
-try:
-    conn = http.client.HTTPSConnection('marketdata-api.nordpoolgroup.com')
-    conn.request("GET", "/prices/dayahead/prices/areaBlock?%s" % params, "{body}", headers)
-    response = conn.getresponse()
-    data = response.read()
-    print(data)
-    conn.close()
-except Exception as e:
-    print("[Errno {0}] {1}".format(e.errno, e.strerror))
-
-####################################
-
+#tmp = input("Scraping finished, press any key to quit...")
+driver.close()
