@@ -1,4 +1,3 @@
-from concurrent.futures import thread
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -8,9 +7,6 @@ from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 import pandas as pd
 import time
-
-# Country to import
-country = 'NO'
 
 # Chrome options
 chrome_options = Options()
@@ -34,7 +30,7 @@ dfs = pd.read_html(str(tables))
 
 # Page contains two tables, with the second being price
 # If page is not completely loaded, only one table appears
-if len(tables) == 2:
+if len(tables) >= 2:
     print(dfs[1])
     #dfs[1].to_pickle('prices.pkl')
     #dfs[1].to_csv('prices.csv')
@@ -42,4 +38,4 @@ if len(tables) == 2:
 else:
     print("ERROR loading price data")
 
-driver.close()
+driver.quit()
