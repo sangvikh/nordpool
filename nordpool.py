@@ -18,14 +18,14 @@ chrome_options.add_argument("--headless")
 
 # Step 1: Create a session and load the page
 driver = webdriver.Chrome(options=chrome_options)
-driver.get('https://www.nordpoolgroup.com/en/Market-data1/Dayahead/Area-Prices/NO/Hourly/?view=table')
+driver.get('https://www.nordpoolgroup.com/en/Market-data1/Dayahead/Area-Prices/ALL1/Hourly/?view=table')
 
 # Wait for the page to fully load
 # Ugly code. Should use webdriver to wait until everything is loaded
 time.sleep(5)
 
 # Step 2: Parse HTML code and grab tables with Beautiful Soup
-soup = BeautifulSoup(driver.page_source, 'lxml')
+soup = BeautifulSoup(driver.page_source, 'html.parser')
 
 tables = soup.find_all('table')
 
@@ -36,7 +36,7 @@ dfs = pd.read_html(str(tables))
 # If page is not completely loaded, only one table appears
 if len(tables) == 2:
     print(dfs[1])
-    dfs[1].to_pickle('prices.pkl')
+    #dfs[1].to_pickle('prices.pkl')
     dfs[1].to_csv('prices.csv')
 else:
     print("ERROR loading price data")
