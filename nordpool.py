@@ -37,7 +37,8 @@ dfs = pd.read_html(str(tables))
 if len(tables) == 2:
     print(dfs[1])
     #dfs[1].to_pickle('prices.pkl')
-    dfs[1].to_csv('prices.csv')
+    #dfs[1].to_csv('prices.csv')
+    dfs[1].to_json('prices.json')
 else:
     print("ERROR loading price data")
 

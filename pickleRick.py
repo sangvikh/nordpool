@@ -7,8 +7,8 @@ VAT = 25
 location = "Kr.sand"
 
 #data = pd.read_pickle('prices.pkl')
-data = pd.read_csv('prices.csv')
-data.to_json('prices.json') # Save as json (testing)
+#data = pd.read_csv('prices.csv')
+data = pd.read_json('prices.json')
 print(data)
 print('\n\n\n')
 
@@ -20,13 +20,13 @@ except:
     print("Could not find location!")
 
 # Labels
-labels = data.iloc[:,1]
+labels = data.iloc[:,0]
 print('Labels:')
 print(labels)
 print('\n\n\n')
 
 # Date
-date = data.iloc[:,1].name
+date = data.iloc[:,0].name
 date = pd.to_datetime(date)
 print('Timestamp:')
 print(date + timedelta(hours=0))        # Can add a timedelta if we want to timestamp each hour
