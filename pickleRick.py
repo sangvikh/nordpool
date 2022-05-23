@@ -1,6 +1,7 @@
 import pandas as pd
 
 EURNOK = 10.26
+VAT = 1.25
 
 #data = pd.read_pickle('prices.pkl')
 data = pd.read_csv('prices.csv')
@@ -14,5 +15,5 @@ print(date)
 print('\n\n\n')
 
 # Kristiansand
-prices = data.iloc[range(0,24),[3]].astype(float)*EURNOK/100
+prices = data.iloc[range(0,24),[3]].astype(float)*EURNOK/100000*VAT
 print(prices)
