@@ -9,6 +9,9 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import time
 
+# Country to import
+country = 'NO'
+
 # Chrome options
 chrome_options = Options()
 chrome_options.add_argument("--headless")
@@ -29,7 +32,12 @@ tables = soup.find_all('table')
 # Step 3: Read tables with Pandas read_html()
 dfs = pd.read_html(str(tables))
 
-print(f'Total tables: {len(dfs)}')
-print(dfs[1])
+# Page contains two tables, with the second being price
+# If page is not completely loaded, only one table appears
+if len(tables) == 2:
+    print(dfs[1])
+    dfs[1].to_pickle('prices.pkl')
+else:
+    print("ERROR loading price data")
 
 driver.close()
