@@ -1,6 +1,6 @@
-from warnings import catch_warnings
 import pandas as pd
 from datetime import datetime, timedelta
+import matplotlib.pyplot as plt
 
 EURNOK = 10.26
 VAT = 25
@@ -47,3 +47,6 @@ peak = prices.iloc[28]
 print("Min: " + str(min))
 print("Max: " + str(max))
 print("Avg: " + str(average))
+
+prices.iloc[range(0,24)].plot()
+plt.show()
