@@ -4,17 +4,21 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 import pandas as pd
 import time
 
+# Chrome options
+chrome_options = Options()
+chrome_options.add_argument("--headless")
+
 # Step 1: Create a session and load the page
-driver = webdriver.Chrome()
+driver = webdriver.Chrome(options=chrome_options)
 driver.get('https://www.nordpoolgroup.com/en/Market-data1/Dayahead/Area-Prices/NO/Hourly/?view=table')
 
 # Wait for the page to fully load
-#WebDriverWait wait = new WebDriverWait(driver, numberOfSeconds);    
-#WebDriverWait(driver, 10).until(EC.text_to_be_present_in_element((By.CLASS_NAME, 'table-wrapper'), 'EUR/MWh'))
+# Ugly code. Should use webdriver to wait until everything is loaded
 time.sleep(5)
 
 # Step 2: Parse HTML code and grab tables with Beautiful Soup
