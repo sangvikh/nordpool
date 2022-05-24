@@ -1,7 +1,7 @@
 # Nordpool webscraper
 Grabs prices from nordpool website using selenium and chrome
 
-## Requirements
+## Dependencies
 * Chrome 101.0.4951.67
 * Chromedriver: https://chromedriver.chromium.org/
 * Selenium
@@ -11,6 +11,10 @@ pip install -U selenium
 * Beautiful soup
 ````
 pip install beautifulsoup4
+````
+* Pandas
+````
+pip install pandas
 ````
 
 ## How to use
