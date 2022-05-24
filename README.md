@@ -2,7 +2,7 @@
 Grabs prices from nordpool website using selenium and chrome
 
 ## Dependencies
-* Chrome 101.0.4951.67
+* Chrome
 * Chromedriver: https://chromedriver.chromium.org/
 * Selenium
 ````
