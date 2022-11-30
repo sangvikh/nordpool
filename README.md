@@ -19,4 +19,4 @@ pip install pandas
 
 ## How to use
 * run nordpool.py to get the latest prices from nordpool. Data is saves as .json
-* pickleRick.py can access the json file and read the data fields
+* postprocessing.py can access the json file and read the data fields
